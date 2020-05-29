@@ -9,22 +9,21 @@ FETCH NEXT FROM access_schema_cursor INTO @access_schema_name;
 WHILE @@FETCH_STATUS = 0
     BEGIN
         SET @sql_string = N'
-CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[analytics_page_metrics]
+CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[analytics_traffic_sources_overview_metrics]
 AS
-SELECT id AS [Analytics Page ID],
+SELECT analytics_group_id AS [Analytics Group ID],
        analytics_filter_id AS [Analytics Filter ID],
        collected_on AS [Collected On],
-       average_page_views_per_visit AS [Average Page Views Per Visit],
+       type AS [Type],
        bounce_rate AS [Bounce Rate],
-       page_views AS [Page Views],
        visits AS [Visits]
-FROM ${flyway:defaultSchema}.analytics_page_metrics
+FROM ${flyway:defaultSchema}.analytics_traffic_sources_overview_metrics
 '
         IF @access_schema_name <> '${masterAccessSchema}'
             SET @sql_string += N'
-WHERE id IN (
-    SELECT DISTINCT([Analytics Page ID])
-    FROM ' + QUOTENAME(@access_schema_name) + N'.[analytics_groups_analytics_pages])';
+WHERE analytics_group_id IN (
+    SELECT [Analytics Group ID]
+    FROM ' + QUOTENAME(@access_schema_name) + N'.[analytics_groups])';
 
         EXECUTE sp_executesql @sql_string;
 
