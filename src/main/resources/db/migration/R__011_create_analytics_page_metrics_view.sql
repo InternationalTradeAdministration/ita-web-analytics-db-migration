@@ -13,10 +13,10 @@ CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[analytics_page_met
 AS
 SELECT id AS [Analytics Page ID],
        analytics_filter_id AS [Analytics Filter ID],
-       collected_on AS [Collected On],
-       average_page_views_per_visit AS [Average Page Views Per Visit],
+       date AS [Date],
+       average_page_views_per_visit AS [Average Pageviews Per Visit],
        bounce_rate AS [Bounce Rate],
-       page_views AS [Page Views],
+       page_views AS [Pageviews],
        visits AS [Visits]
 FROM ${flyway:defaultSchema}.analytics_page_metrics
 '

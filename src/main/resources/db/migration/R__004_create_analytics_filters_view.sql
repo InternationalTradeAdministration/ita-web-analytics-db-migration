@@ -11,6 +11,9 @@ WHILE @@FETCH_STATUS = 0
         SET @sql_string = N'
 CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[analytics_filters]
 AS
+SELECT 1 AS [Analytics Filter ID],
+' + QUOTENAME('Not Selected', '''') + N' AS [Analytics Filter]
+UNION
 SELECT id AS [Analytics Filter ID],
        name AS [Analytics Filter]
 FROM ${flyway:defaultSchema}.analytics_filters

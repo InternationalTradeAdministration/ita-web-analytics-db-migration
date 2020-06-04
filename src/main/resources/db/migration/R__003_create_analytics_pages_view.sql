@@ -13,11 +13,7 @@ CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[analytics_pages]
 AS
 SELECT id AS [Analytics Page ID],
        title AS [Title],
-       url AS [URL],
-       average_page_views_per_visit AS [Average Page Views Per Visit],
-       bounce_rate AS [Bounce Rate],
-       page_views AS [Page Views],
-       visits AS [Visits]
+       url AS [URL]
 FROM ${flyway:defaultSchema}.analytics_pages
 '
         IF @access_schema_name <> '${masterAccessSchema}'

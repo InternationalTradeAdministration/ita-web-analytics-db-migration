@@ -15,7 +15,7 @@ SELECT id AS [Page ID],
        title AS [Title],
        url AS [URL],
        page_level AS [Page Level],
-       page_views AS [Page Views]
+       page_views AS [Pageviews]
 FROM ${flyway:defaultSchema}.pages
 '
         IF @access_schema_name <> '${masterAccessSchema}'
