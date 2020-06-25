@@ -10,7 +10,13 @@ WHILE @@FETCH_STATUS = 0
     BEGIN
         SET @sql_string = N'
 CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[content_groups]
-AS
+AS'
+        IF @access_schema_name = '${masterAccessSchema}'
+            SET @sql_string += N'
+SELECT 1 AS [Content Group ID],
+' + QUOTENAME('Not Selected', '''') + N' AS [Content Group]
+UNION'
+        SET @sql_string += N'
 SELECT id AS [Content Group ID],
        name AS [Content Group]
 FROM ${flyway:defaultSchema}.content_groups
