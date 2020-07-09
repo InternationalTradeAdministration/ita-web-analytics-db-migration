@@ -11,8 +11,7 @@ WHILE @@FETCH_STATUS = 0
         SET @sql_string = N'
 CREATE OR ALTER VIEW ' + QUOTENAME(@access_schema_name) + N'.[analytics_page_metrics]
 AS
-SELECT id AS [Analytics Page ID],
-       analytics_filter_id AS [Analytics Filter ID],
+SELECT analytics_page_id AS [Analytics Page ID],
        date AS [Date],
        average_page_views_per_visit AS [Average Pageviews Per Visit],
        bounce_rate AS [Bounce Rate],
@@ -22,9 +21,9 @@ FROM ${flyway:defaultSchema}.analytics_page_metrics
 '
         IF @access_schema_name <> '${masterAccessSchema}'
             SET @sql_string += N'
-WHERE id IN (
-    SELECT DISTINCT([Analytics Page ID])
-    FROM ' + QUOTENAME(@access_schema_name) + N'.[analytics_groups_analytics_pages])';
+WHERE analytics_page_id IN (
+    SELECT [Analytics Page ID]
+    FROM ' + QUOTENAME(@access_schema_name) + N'.[analytics_pages])';
 
         EXECUTE sp_executesql @sql_string;
 
