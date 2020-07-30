@@ -2,10 +2,10 @@ CREATE TABLE ${flyway:defaultSchema}.quality_assurance_summary_metrics
 (
     content_group_id               bigint   NOT NULL,
     broken_links                   int      NOT NULL,
-    broken_links_delta             int      NOT NULL,
+    broken_links_delta             int,
     clicks_on_broken_links         int      NOT NULL,
     misspellings                   int      NOT NULL,
-    misspellings_delta             int      NOT NULL,
+    misspellings_delta             int,
     pages                          int      NOT NULL,
     pages_affected_by_broken_links int      NOT NULL,
     pages_affected_by_misspellings int      NOT NULL,
