@@ -21,7 +21,8 @@ BEGIN
             SET @end_date = EOMONTH(@start_date)
         END
 
-    INSERT INTO @date_range_periods VALUES ('this_month')
+    INSERT INTO @date_range_periods
+    SELECT CONCAT(CONVERT(CHAR(8), @start_date, 112), '_', CONVERT(CHAR(8), @end_date, 112))
 
     SELECT date_range_period FROM @date_range_periods
 END
