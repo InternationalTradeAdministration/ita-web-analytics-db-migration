@@ -53,3 +53,13 @@ SELECT @access_schema_id, id
 FROM web_analytics.analytics_groups
 WHERE name IN ('Industry Pages',
                'SC & P/B Services');
+
+-- SIMA
+SELECT @access_schema_id = id
+FROM web_analytics.access_schemas
+WHERE name = 'web_analytics_sima';
+
+INSERT INTO web_analytics.access_schemas_analytics_groups
+SELECT @access_schema_id, id
+FROM web_analytics.analytics_groups
+WHERE name IN ('SIMA Page Group');
