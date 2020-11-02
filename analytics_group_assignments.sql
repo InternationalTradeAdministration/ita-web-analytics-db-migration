@@ -10,7 +10,10 @@ WHERE name = 'web_analytics_ec';
 INSERT INTO web_analytics.access_schemas_analytics_groups
 SELECT @access_schema_id, id
 FROM web_analytics.analytics_groups
-WHERE name IN ('E&C Analytics Group');
+WHERE name IN ('E&C Analytics Group',
+               'SIMA Page Group',
+                'Data Viz',
+                'Trade Event Partnership Program (TEPP)');
 
 -- EXAD
 SELECT @access_schema_id = id
@@ -41,6 +44,7 @@ WHERE name IN ('EIL - Analytics',
                'Knowledge Product',
                'Office',
                'Prosper Africa',
+               'RAISE',
                'TEPP');
 
 -- I&A
@@ -51,7 +55,8 @@ WHERE name = 'web_analytics_ia';
 INSERT INTO web_analytics.access_schemas_analytics_groups
 SELECT @access_schema_id, id
 FROM web_analytics.analytics_groups
-WHERE name IN ('Industry Pages',
+WHERE name IN ('I&A - Strategic Partnerships',
+               'Industry Pages',
                'SC & P/B Services');
 
 -- SIMA
