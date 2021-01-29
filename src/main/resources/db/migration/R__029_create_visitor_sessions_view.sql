@@ -1,6 +1,7 @@
 CREATE OR ALTER VIEW [web_analytics_wiv].[visitor_sessions]
 AS
 SELECT id AS [Visitor Session ID],
+       date AS [Date],
        visitor_id AS [Visitor ID],
        session_start AS [Visitor Session Start At],
        page_views AS [Visitor Session Pageviews],
